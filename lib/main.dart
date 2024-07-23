@@ -1,5 +1,6 @@
 import 'package:banner/controller/image_slider_provider.dart';
 import 'package:flutter/material.dart';
+import 'controller/add_to_cart_provider.dart';
 import 'view/pages/homepage.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ImagesliderProvider()),
+        ChangeNotifierProvider(create: (_) => AddToCartProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

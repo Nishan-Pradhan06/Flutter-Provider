@@ -1,4 +1,7 @@
+import 'package:banner/controller/add_to_cart_provider.dart';
+import 'package:banner/view/pages/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -19,6 +22,11 @@ class ProductDetailPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CartPage(),
+                ),
+              );
             },
           ),
         ],
@@ -49,7 +57,7 @@ class ProductDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Text(
-              '\$${product.price}',
+              'Rs. ${product.price}',
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
@@ -78,17 +86,31 @@ class ProductDetailPage extends StatelessWidget {
                     style: TextStyle(fontSize: 18.0),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple.shade300,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
-                  ),
-                  child: const Text(
-                    'Add to Cart',
-                    style: TextStyle(fontSize: 18.0),
+                Consumer<AddToCartProvider>(
+                  builder: (context, cartProvider, child) => ElevatedButton(
+                    onPressed: () {
+                      cartProvider.addProductToCart(product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(
+                            milliseconds: 800,
+                          ),
+                          content: Text("Item added to cart!"),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple.shade300,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                    ),
+                    child: const Text(
+                      'Add to Cart',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
                   ),
                 ),
               ],

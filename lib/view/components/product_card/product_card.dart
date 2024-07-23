@@ -1,5 +1,7 @@
+import 'package:banner/controller/add_to_cart_provider.dart';
 import 'package:banner/view/pages/productpage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../models/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -47,17 +49,35 @@ class ProductCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '\$${product.price}',
+                      'Rs. ${product.price}',
                       style: const TextStyle(fontSize: 16, color: Colors.green),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_shopping_cart_rounded,
+                    padding: const EdgeInsets.all(6.0),
+                    child: Consumer<AddToCartProvider>(
+                      builder: (context, cartProvider, child) => IconButton(
+                        icon: const Icon(
+                          Icons.add_shopping_cart_rounded,
+                        ),
+                        onPressed: () {
+                          cartProvider.addProductToCart(product);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              duration: Duration(
+                                milliseconds: 800,
+                              ),
+                              content: Text(
+                                "Item added to cart!",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      onPressed: () {},
                     ),
                   ),
                 ],
