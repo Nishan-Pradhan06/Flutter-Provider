@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
-import 'components/cart/cart.dart';
+import '../../models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
@@ -20,10 +19,6 @@ class ProductDetailPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => CartPage(cartItems: product)));
             },
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
-import 'components/cart/cart.dart';
-import 'components/product_card/product_card.dart';
-import 'components/slider/slider.dart';
+import '../../models/product.dart';
+import 'cart.dart';
+import '../components/product_card/product_card.dart';
+import '../components/slider/slider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
