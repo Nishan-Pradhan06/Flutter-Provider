@@ -29,6 +29,7 @@ class CartPage extends StatelessWidget {
                     children: [
                       Image(
                         image: AssetImage('assets/cart.png'),
+                        filterQuality: FilterQuality.low,
                         height: 300,
                       ),
                       SizedBox(

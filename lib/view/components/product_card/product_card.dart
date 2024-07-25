@@ -1,4 +1,5 @@
 import 'package:banner/controller/add_to_cart_provider.dart';
+import 'package:banner/controller/fav_provider.dart';
 import 'package:banner/view/pages/productpage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,14 +25,53 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 150.0, // Adjust height as needed
-              width: double.infinity,
-              child: Image.network(
-                // Network image URL
-                product.imageurl,
-                fit: BoxFit.cover,
-              ),
+            Stack(
+              children: [
+                SizedBox(
+                  height: 150.0, // Adjust height as needed
+                  width: double.infinity,
+                  child: Image.network(
+                    product.imageurl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 4,
+                  right: 4,
+                  child: Consumer<FavoriteProvider>(
+                    builder: (context, favProvider, child) {
+                      bool isFav = favProvider.isFavorite(product);
+                      return Material(
+                        color: Colors.transparent,
+                        elevation: 4.0,
+                        shape: const CircleBorder(),
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: const BoxDecoration(
+                            color: Color(0xfff7f2fa),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: Icon(
+                              isFav ? Icons.favorite : Icons.favorite_border,
+                              color: const Color.fromARGB(255, 233, 108, 99),
+                              size: 20,
+                            ),
+                            onPressed: () {
+                              if (isFav) {
+                                favProvider.removeFavorite(product);
+                              } else {
+                                favProvider.addFavorite(product);
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 8),
@@ -44,7 +84,6 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: cross,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -64,9 +103,7 @@ class ProductCard extends StatelessWidget {
                           cartProvider.addProductToCart(product);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              duration: Duration(
-                                milliseconds: 800,
-                              ),
+                              duration: Duration(milliseconds: 800),
                               content: Text(
                                 "Item added to cart!",
                                 style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:banner/const/product_list.dart';
+import 'package:banner/view/pages/fav_page.dart';
 import 'package:flutter/material.dart';
 import 'cart.dart';
 import '../components/product_card/product_card.dart';
@@ -20,6 +21,19 @@ class Homepage extends StatelessWidget {
         foregroundColor: Colors.white,
         elevation: 5,
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.favorite_rounded,
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FavoritePage(),
+              ),
+            );
+          },
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
