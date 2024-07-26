@@ -12,7 +12,7 @@ class FavoritePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple.shade300,
         title: const Text(
-          'Favouries',
+          'Wishlist',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         foregroundColor: Colors.white,
@@ -23,7 +23,11 @@ class FavoritePage extends StatelessWidget {
         builder: (context, favoriteProvider, child) {
           if (favoriteProvider.favorites.isEmpty) {
             return const Center(
-              child: Text('No favorite products.'),
+              child: Image(
+                image: AssetImage('assets/wishlist.png'),
+                filterQuality: FilterQuality.low,
+                height: 300,
+              ),
             );
           }
           return GridView.builder(

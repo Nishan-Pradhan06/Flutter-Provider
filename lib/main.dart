@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Banner Slider',
+        title: 'Learning Provider',
         theme: ThemeData(
           useMaterial3: true,
         ),

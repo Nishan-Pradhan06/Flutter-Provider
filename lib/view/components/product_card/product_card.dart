@@ -61,8 +61,36 @@ class ProductCard extends StatelessWidget {
                             onPressed: () {
                               if (isFav) {
                                 favProvider.removeFavorite(product);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    duration: Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    content: Text(
+                                      "Remove item from wishlist sucessfully!",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                );
                               } else {
                                 favProvider.addFavorite(product);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    duration: Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    content: Text(
+                                      "Add item to wishlist sucessfully!",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
                             },
                           ),
@@ -107,7 +135,7 @@ class ProductCard extends StatelessWidget {
                               content: Text(
                                 "Item added to cart!",
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

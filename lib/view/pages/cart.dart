@@ -35,12 +35,14 @@ class CartPage extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        'Your Cart is Empty.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Center(
+                        child: Text(
+                          'Your Cart is Empty.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
